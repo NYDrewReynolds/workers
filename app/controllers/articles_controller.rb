@@ -16,7 +16,7 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     if @article.save
-      sleep(5)
+      Resque.enqueue(CreateJob, 5)
 
       flash[:notice] = "Article was created."
       redirect_to articles_path
@@ -32,6 +32,8 @@ class ArticlesController < ApplicationController
   def update
     @article = Article.find params[:id]
     if @article.update_attributes(article_params)
+      Resque.enqueue(UpdateJob, 5)
+
       flash[:notice] = "Article was updated."
       redirect_to article_path(@article)
     else

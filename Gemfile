@@ -9,6 +9,7 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'sass-rails', '>= 3.2'
 gem 'bcrypt', '~> 3.1.7'
 gem 'resque'
+gem 'foreman'
 
 group :development, :test do
   gem 'spring'
@@ -22,3 +23,5 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'launchy'
 end
+
+ruby '2.2.0'
